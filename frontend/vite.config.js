@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://gastric-leodora-sunilk-f03394eb.koyeb.app/', // Your backend server
+        target: 'https://gastric-leodora-sunilk-f03394eb.koyeb.app', // Your backend server
         changeOrigin: true,
         secure: false,
       },
