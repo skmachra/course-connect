@@ -110,7 +110,7 @@ router.post("/register", async (req, res) => {
     });
     await newUser.save();
 
-    const verificationLink = `${process.env.VITE_API_URL}/api/users/verify-email?token=${verificationToken}&email=${email}`;
+    const verificationLink = `https://gastric-leodora-sunilk-f03394eb.koyeb.app/api/users/verify-email?token=${verificationToken}&email=${email}`;
     const subject = "Verify Your Email Address";
     const text = `Hello ${name},
 
@@ -157,7 +157,7 @@ router.post("/resend-verification", async (req, res) => {
     user.tokenExpiration = tokenExpiration;
     await user.save();
 
-    const verificationLink = `${process.env.VITE_API_URL}/api/users/verify-email?token=${verificationToken}&email=${email}`;
+    const verificationLink = `https://gastric-leodora-sunilk-f03394eb.koyeb.app/api/users/verify-email?token=${verificationToken}&email=${email}`;
     const subject = "Email Verification";
     const text = `Hello ${user.name},
 
