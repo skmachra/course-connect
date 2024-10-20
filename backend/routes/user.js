@@ -227,7 +227,7 @@ router.post("/forgot-password", async (req, res) => {
   user.resetPasswordExpires = Date.now() + 3600000;
   await user.save();
 
-  const resetLink = `${process.env.VITE_API_URL}/reset-password?token=${resetToken}&email=${email}`;
+  const resetLink = `${process.env.VITE_API_URL}/#/reset-password?token=${resetToken}&email=${email}`;
   const subject = "Reset Your Password";
   const text = `Hello ${user.name},
 
