@@ -77,8 +77,8 @@ const Header = ({ user, onLogout }) => {
                                 <li>
                                     <Link to="/addcourse" className="hover:text-gray-200 transition duration-200 block py-2">Add Course</Link>
                                 </li>
-                                <li>
-                                    <button onClick={onLogout} className="hover:text-gray-200 transition duration-200 block py-2">Logout</button>
+                                <li className="mt-4">
+                                    <button onClick={onLogout} className="hover:text-gray-200 transition duration-200 block py-2 mx-auto">Logout</button>
                                 </li>
                             </>
                         ) : (
