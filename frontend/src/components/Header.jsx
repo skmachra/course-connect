@@ -1,49 +1,102 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Header = ({ user, onLogout }) => {
+    // State to manage mobile menu visibility
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    // Function to toggle the mobile menu
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+
     return (
         <nav className="bg-blue-600 p-4 text-white shadow-md">
-            <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div className="container mx-auto flex justify-between items-center">
                 {/* Logo */}
-                <h1 className="text-2xl font-bold mb-4 md:mb-0">
+                <h1 className="text-2xl font-bold">
                     <Link to="/" className="hover:text-gray-200 transition duration-200">Course Connect</Link>
                 </h1>
-                <ul className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6">
+
+                {/* Mobile Menu Toggle Button */}
+                <div className="md:hidden">
+                    <button onClick={toggleMenu} className="text-white focus:outline-none">
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+                </div>
+
+                {/* Desktop Menu */}
+                <ul className="hidden md:flex space-x-6">
                     {user ? (
                         <>
                             <li>
-                                <Link to="/" className="hover:text-gray-200 transition duration-200 px-4 py-2">Home</Link>
+                                <Link to="/" className="hover:text-gray-200 transition duration-200">Home</Link>
                             </li>
                             <li>
-                                <Link to="/search" className="hover:text-gray-200 transition duration-200 px-4 py-2">Search</Link>
+                                <Link to="/search" className="hover:text-gray-200 transition duration-200">Search</Link>
                             </li>
                             <li>
-                                <Link to="/addcourse" className="hover:text-gray-200 transition duration-200 px-4 py-2">Add Course</Link>
+                                <Link to="/addcourse" className="hover:text-gray-200 transition duration-200">Add Course</Link>
                             </li>
                             <li>
-                                <button onClick={onLogout} className="hover:text-gray-200 transition duration-200 px-4 py-2">
-                                    Logout
-                                </button>
+                                <button onClick={onLogout} className="hover:text-gray-200 transition duration-200">Logout</button>
                             </li>
                         </>
                     ) : (
                         <>
                             <li>
-                                <Link to="/" className="hover:text-gray-200 transition duration-200 px-4 py-2">Home</Link>
+                                <Link to="/" className="hover:text-gray-200 transition duration-200">Home</Link>
                             </li>
                             <li>
-                                <Link to="/login" className="hover:text-gray-200 transition duration-200 px-4 py-2">Login</Link>
+                                <Link to="/login" className="hover:text-gray-200 transition duration-200">Login</Link>
                             </li>
                             <li>
-                                <Link to="/register" className="hover:text-gray-200 transition duration-200 px-4 py-2">Register</Link>
+                                <Link to="/register" className="hover:text-gray-200 transition duration-200">Register</Link>
                             </li>
                         </>
                     )}
                 </ul>
+
+                {/* Mobile Menu */}
+                {isMenuOpen && (
+                    <ul className="flex flex-col space-y-4 md:hidden absolute bg-blue-600 w-full left-0 top-16 text-center">
+                        {user ? (
+                            <>
+                                <li>
+                                    <Link to="/" className="hover:text-gray-200 transition duration-200 block py-2">Home</Link>
+                                </li>
+                                <li>
+                                    <Link to="/search" className="hover:text-gray-200 transition duration-200 block py-2">Search</Link>
+                                </li>
+                                <li>
+                                    <Link to="/addcourse" className="hover:text-gray-200 transition duration-200 block py-2">Add Course</Link>
+                                </li>
+                                <li>
+                                    <button onClick={onLogout} className="hover:text-gray-200 transition duration-200 block py-2">Logout</button>
+                                </li>
+                            </>
+                        ) : (
+                            <>
+                                <li>
+                                    <Link to="/" className="hover:text-gray-200 transition duration-200 block py-2">Home</Link>
+                                </li>
+                                <li>
+                                    <Link to="/login" className="hover:text-gray-200 transition duration-200 block py-2">Login</Link>
+                                </li>
+                                <li>
+                                    <Link to="/register" className="hover:text-gray-200 transition duration-200 block py-2">Register</Link>
+                                </li>
+                            </>
+                        )}
+                    </ul>
+                )}
             </div>
         </nav>
     );
 };
 
 export default Header;
+
 
