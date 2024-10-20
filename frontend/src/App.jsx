@@ -40,7 +40,6 @@ const App = () => {
     };
 
     return (
-        <Router>
             <div className="container mx-auto">
                 <Header user={user} onLogout={handleLogout} />
                 <Routes>
@@ -56,7 +55,6 @@ const App = () => {
                 </Routes>
                 <Footer />
             </div>
-        </Router>
     );
 };
 
